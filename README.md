@@ -16,7 +16,7 @@ Aparecerão os seguintes containers 'app-property', 'property-nginx', 'property-
 
 __Acessar o container da aplicação:__
 
-    docker exec -it test-app sh
+    docker exec -it app-property bash
 
 __Executar os seguintes comandos__
 
