@@ -16,4 +16,13 @@ class ContratoObserver
 
         $propriedade->save();
     }
+
+    public function deleted(Contrato $contrato)
+    {
+        $propriedade = Propriedade::find($contrato->id_propriedade);
+
+        $propriedade->id_status = StatusPropriedade::NAO_CONTRATADO;
+
+        $propriedade->save();
+    }
 }
