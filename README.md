@@ -1,4 +1,4 @@
-## Laravel Test Backend
+## App Laravel
 
 ##### Para testar o projeto, execute os seguintes comandos:
 
@@ -13,18 +13,6 @@ __Listar os containers:__
 Aparecerão os seguintes containers 'test-app', 'test-mysql'.
 
 __Criar o arquivo .env a partir do .env.example__
-
-Configurar as variaveis de ambiente abaixo, para o funcionamento do disparo de email através de jobs, foi usado pra teste o mailtrap
-
-    QUEUE_CONNECTION=database
-    MAIL_MAILER=smtp
-    MAIL_HOST=smtp.mailtrap.io
-    MAIL_PORT=2525
-    MAIL_USERNAME=
-    MAIL_PASSWORD=
-    MAIL_ENCRYPTION=tls
-    MAIL_FROM_ADDRESS=
-    MAIL_FROM_NAME="${APP_NAME}"
 
 __Acessar o container da aplicação:__
 
