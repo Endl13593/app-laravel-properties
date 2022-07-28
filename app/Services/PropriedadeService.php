@@ -17,7 +17,7 @@ class PropriedadeService
 
         $props = ['direcao' => $direcao, 'orderBy' => $orderBy];
 
-        return array_merge(['paginate' => $query->paginate(8)->appends($props)], $props);
+        return array_merge(['paginate' => $query->paginate(10)->appends($props)], $props);
     }
 
     public function create(array $data): Propriedade
