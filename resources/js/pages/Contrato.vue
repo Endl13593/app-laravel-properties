@@ -1,57 +1,71 @@
 <template>
-    <div class="mt-3">
-        <div class="row justify-content-center">
-            <div class="col-11">
-                <div class="card">
-                    <div class="card-header">Contratos</div>
-
-                    <div class="card-body table-responsive">
-                        <button class="btn btn-success btn-sm mb-2" @click.prevent="novoContratoModal = true"><i class="el-icon-circle-plus"></i> Gerar Novo Contrato</button>
-                        <table class="table table-hover" v-loading="preloader">
-                            <thead>
-                            <tr>
-                                <th scope="col">
-                                    Propriedade
-                                </th>
-                                <th @click="orderByChange('id_tipo_de_pessoa')" style="cursor: pointer" scope="col">
-                                    <direcao-order-component title="Tipo de Pessoa" :direcao="direcao" :order-by="orderBy" coluna="id_tipo_de_pessoa"/>
-                                </th>
-                                <th @click="orderByChange('documento_contratante')" style="cursor: pointer" scope="col">
-                                    <direcao-order-component title="Documento Contratante" :direcao="direcao" :order-by="orderBy" coluna="documento_contratante"/>
-                                </th>
-                                <th @click="orderByChange('nome_contratante')" style="cursor: pointer" scope="col">
-                                    <direcao-order-component title="Nome Contratante" :direcao="direcao" :order-by="orderBy" coluna="nome_contratante"/>
-                                </th>
-                                <th @click="orderByChange('email_contratante')" style="cursor: pointer" scope="col">
-                                    <direcao-order-component title="Email Contratante" :direcao="direcao" :order-by="orderBy" coluna="email_contratante"/>
-                                </th>
-                                <th @click="orderByChange('created_at')" style="cursor: pointer" scope="col">
-                                    <direcao-order-component title="Criado Em" :direcao="direcao" :order-by="orderBy" coluna="created_at"/>
-                                </th>
-                                <th scope="col">Ações</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr v-for="row in dataSet.data" :key="row.id">
-                                <td>{{ row.propriedade.rua }}, {{ row.propriedade.numero }}, {{ row.propriedade.complemento }}, {{ row.propriedade.bairro }}</td>
-                                <td>{{ row.tipoDePessoa.name }}</td>
-                                <td>{{ row.documento_contratante }}</td>
-                                <td>{{ row.nome_contratante }}</td>
-                                <td>{{ row.email_contratante }}</td>
-                                <td>{{ row.created_at }}</td>
-                                <td>
-                                    <button class="btn btn-sm btn-danger" @click.prevent="deleteItem(row)"><i class="el-icon-delete"></i> Remover</button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <div>
+        <div class="px-4 sm:px-6 lg:px-8">
+            <div class="sm:flex sm:items-center">
+                <div class="sm:flex-auto">
+                    <h1 class="text-xl font-semibold text-gray-900">Contratos</h1>
+                </div>
+                <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                    <button type="button"
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none sm:w-auto"
+                        @click.prevent="novoContratoModal = true"
+                    >
+                        Novo Contrato
+                    </button>
+                </div>
+            </div>
+            <div class="mt-4 flex flex-col">
+                <div class="overflow-x-auto shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-300" v-loading="preloader">
+                        <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                Propriedade
+                            </th>
+                            <th scope="col" @click="orderByChange('id_tipo_de_pessoa')" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                <direcao-order-component title="Tipo de Pessoa" :direcao="direcao" :order-by="orderBy" coluna="id_tipo_de_pessoa"/>
+                            </th>
+                            <th scope="col" @click="orderByChange('documento_contratante')" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                <direcao-order-component title="Documento Contratante" :direcao="direcao" :order-by="orderBy" coluna="documento_contratante"/>
+                            </th>
+                            <th scope="col" @click="orderByChange('nome_contratante')" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                <direcao-order-component title="Nome Contratante" :direcao="direcao" :order-by="orderBy" coluna="nome_contratante"/>
+                            </th>
+                            <th scope="col" @click="orderByChange('email_contratante')" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                <direcao-order-component title="Email Contratante" :direcao="direcao" :order-by="orderBy" coluna="email_contratante"/>
+                            </th>
+                            <th scope="col" @click="orderByChange('created_at')" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                <direcao-order-component title="Criado Em" :direcao="direcao" :order-by="orderBy" coluna="created_at"/>
+                            </th>
+                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"></th>
+                        </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 bg-white">
+                        <tr v-for="row in dataSet.data" :key="row.id">
+                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ row.propriedade.rua }}, {{ row.propriedade.numero }}, {{ row.propriedade.complemento }}, {{ row.propriedade.bairro }}</td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ row.tipoDePessoa.name }}</td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ row.documento_contratante }}</td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ row.nome_contratante }}</td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ row.email_contratante }}</td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ row.created_at }}</td>
+                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                <button
+                                    type="button"
+                                    @click.prevent="deleteItem(row)"
+                                    class="inline-flex items-center rounded-md bg-red-700 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-red-500 focus:outline-none"
+                                >
+                                    Remover
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
         <paginate-component
-            class="mt-2"
+            class="mt-2 w-fit"
             :pagination="dataSet"
             :offset="offset"
             @paginate="getData"
@@ -59,7 +73,7 @@
 
         <novo-contrato-component
             :visible="novoContratoModal"
-            :handleClose="() => { this.novoContratoModal = false }"
+            :handleClose="() => { novoContratoModal = false }"
             @REFRESH="getData"/>
 
     </div>

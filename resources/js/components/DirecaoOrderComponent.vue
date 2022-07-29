@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="cursor-pointer">
         {{title}}
         <i v-show="direcao === 'desc' && orderBy === 'id'" class="el-icon-d-caret"></i>
         <i v-show="direcao === 'asc'  && orderBy === coluna"  class="el-icon-caret-top"></i>

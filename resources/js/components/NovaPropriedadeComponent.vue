@@ -4,7 +4,7 @@
         :visible.sync="visible"
         :before-close="handleClose"
         width="600px"
-        top="1"
+        top="10px"
         :close-on-click-modal="false"
     >
         <el-form :model="form" :rules="rules" ref="ruleForm" label-width="170px" class="demo-ruleForm">

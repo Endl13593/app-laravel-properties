@@ -7,14 +7,14 @@
 
     <title>Laravel</title>
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset(mix('css/app.css')) }}">
 </head>
 
 <body class="antialiased">
 
 <div id="app"></div>
 
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset(mix('js/app.js')) }}"></script>
 </body>
 
 </html>

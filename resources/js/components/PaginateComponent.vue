@@ -1,36 +1,40 @@
 <template>
-    <ul class="pagination" style="display: flex; align-items: center; justify-content: center">
+    <ul class="flex items-center justify-between mx-auto">
         <li v-if="pagination.current_page > 1">
-            <a href="#" class="page-link" aria-label="Previous" @click.prevent="changePage(1)">
+            <span @click.prevent="changePage(1)" class="cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 leading-5 rounded-md hover:bg-gray-100">
                 <span aria-hidden="true"><i class="el-icon-d-arrow-left"></i></span>
-            </a>
+            </span>
         </li>
         <li v-if="pagination.current_page > 1">
-            <a href="#" class="page-link" aria-label="Previous" @click.prevent="changePage(pagination.current_page - 1)">
+            <span @click.prevent="changePage(pagination.current_page - 1)" class="cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 leading-5 rounded-md hover:bg-gray-100">
                 <span aria-hidden="true"><i class="el-icon-arrow-left"></i></span>
-            </a>
+            </span>
         </li>
 
-        <li v-if="pagination.last_page > 1" v-for="(page, index) in pagesNumber" :class="['page-item', {'active': page === pagination.current_page}]" :key="index">
-            <a href="#" class="page-link" @click.prevent="changePage(page)">
+        <li v-if="pagination.last_page > 1" v-for="(page, index) in pagesNumber" :key="index">
+            <span @click.prevent="changePage(page)"
+                :class="[
+                    'cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 leading-5 rounded-md hover:bg-gray-100',
+                    {'border border-gray-400 bg-gray-300 text-gray-700 font-bold': page === pagination.current_page}
+                ]">
                 {{ page }}
-            </a>
+            </span>
         </li>
 
         <li v-if="pagination.current_page < pagination.last_page">
-            <a href="#" class="page-link" aria-label="Next" @click.prevent="changePage(pagination.current_page + 1)">
+            <span @click.prevent="changePage(pagination.current_page + 1)" class="cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 leading-5 rounded-md hover:bg-gray-100">
                 <span aria-hidden="true"><i class="el-icon-arrow-right"></i></span>
-            </a>
+            </span>
         </li>
 
         <li v-if="pagination.current_page < pagination.last_page">
-            <a href="#" class="page-link" aria-label="Previous" @click.prevent="changePage(pagination.last_page)">
+            <span @click.prevent="changePage(pagination.last_page)" class="cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 leading-5 rounded-md hover:bg-gray-100">
                 <span aria-hidden="true"><i class="el-icon-d-arrow-right"></i></span>
-            </a>
+            </span>
         </li>
 
-        <li class="ml-2">
-            <span>Total: {{pagination.total}} registros</span>
+        <li class="ml-2 text-sm text-gray-600">
+            <span>Total:</span> <span class="font-bold">{{pagination.total}}</span>
         </li>
     </ul>
 </template>
